@@ -15,7 +15,7 @@
         <header>
             <div id="header"></div>
         </header>
-        <div id="app" class="container"></div>
+        <div id="app"></div>
 
         <footer>
 
