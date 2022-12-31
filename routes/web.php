@@ -15,9 +15,7 @@ use App\Http\Controllers\AdminsController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth/login');
-});
+Route::redirect('/', '/login');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
