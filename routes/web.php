@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,10 @@ Route::get('/dashboard', function () {
 Route::get('/zaynsworld', function () {
     return view('index');
 })->middleware(['auth', 'verified'])->name('zaynsworld');
+
+Route::get('/admin', [AdminsController::class, 'index'])
+    ->middleware('auth.admin')
+    ->name('admin.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
