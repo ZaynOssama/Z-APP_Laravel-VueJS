@@ -25,9 +25,9 @@ Route::get('/zaynsworld', function () {
     return view('index');
 })->middleware(['auth', 'verified'])->name('zaynsworld');
 
-Route::get('/admin', [AdminsController::class, 'index'])
-    ->middleware('auth.admin')
-    ->name('admin.index');
+Route::get('/admin', function () {
+    return view('admin/dashboard');
+})->middleware(['auth.admin', 'verified'])->name('admin.index');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
