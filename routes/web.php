@@ -35,6 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+// This is for testing purposes, not for production.//
+//Comment the next route if the app is not working//
 Route::view('/{any}', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->where('any', '.*');
