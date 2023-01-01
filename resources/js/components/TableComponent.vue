@@ -1,46 +1,46 @@
 <template>
-    <div>
-      PFFF
-    </div>
-  </template>
+    <BootstrapTable
+      :columns="columns"
+      :data="data"
+      :options="options"
+    />
+</template>
 
-  <script>
-  import customTable from "./components/customTable";
+<script>
+  import BootstrapTable from 'bootstrap-table/dist/bootstrap-table-vue.esm.js'
 
   export default {
-    name: "App",
     components: {
-      customTable
+      BootstrapTable
     },
-    data() {
+    data () {
       return {
-        fields: ["name", "email", "role", { key: "admin", label: "Is admin ?" }],
-        items: [
+        columns: [
           {
-            id: 1,
-            name: "John",
-            email: "john@john.com",
-            role: 1
+            title: 'Item ID',
+            field: 'id'
           },
           {
-            id: 2,
-            name: "Mike",
-            email: "mike@mike.com",
-            role: 2
+            field: 'name',
+            title: 'Item Name'
+          },
+          {
+            field: 'price',
+            title: 'Item Price'
           }
-        ]
-      };
+        ],
+        data: [
+          {
+            id: 1,
+            name: 'Item 1',
+            price: '$1'
+          }
+        ],
+        options: {
+          search: true,
+          showColumns: true
+        }
+      }
     }
-  };
-  </script>
-
-  <style>
-  #app {
-    font-family: "Avenir", Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
   }
-  </style>
+</script>
