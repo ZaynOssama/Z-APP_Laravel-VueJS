@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdminsController;
+use App\Http\Controllers\UsersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +29,12 @@ Route::get('/admin', function () {
     return view('admin/dashboard');
 })->middleware(['auth.admin', 'verified'])->name('admin.index');
 
+Route::get('/users', function () {
+    return view('admin/users/index');
+})->middleware(['auth.admin', 'verified'])->name('users.index');
+
+Route::get('/users_data', [UsersController::class, 'index'])->name('users.data');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -37,8 +43,8 @@ Route::middleware('auth')->group(function () {
 
 // This is for testing purposes, not for production.//
 //Comment the next route if the app is not working//
-Route::view('/{any}', 'dashboard')
+/*Route::view('/{any}', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->where('any', '.*');
-
+*/
 require __DIR__.'/auth.php';

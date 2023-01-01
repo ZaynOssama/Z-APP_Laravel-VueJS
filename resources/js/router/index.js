@@ -1,13 +1,13 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-const HomeComponent = () => import ('../components/HomeComponent.vue');
+const TableComponent = () => import ('../components/TableComponent.vue');
 const AboutComponent = () => import ('../components/AboutComponent.vue');
 
 const routes=[
     {
-        path:'/dashboard',
-        name:'home',
-        component:HomeComponent
+        path:'/users',
+        name:'users',
+        component:TableComponent
     },
     {
         path:'/about',
