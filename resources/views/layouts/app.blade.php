@@ -31,9 +31,9 @@
             @endif
 
             <!-- Page Content -->
-            <main>
+            <div id="app">
                 {{ $slot }}
-            </main>
+            </app>
         </div>
     </body>
 </html>
