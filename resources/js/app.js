@@ -8,15 +8,15 @@ Alpine.start();
 
 import { createApp } from 'vue/dist/vue.esm-bundler';
 import RouterWeb from './router/index'
-import BootstrapVue from 'bootstrap-vue'
+//import BootstrapVue from 'bootstrap-vue'
 
-import 'bootstrap/dist/css/bootstrap.css'
+/*import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
+*/
 
 const app = createApp({});
 
-Vue.use(BootstrapVue);
+//app.use(BootstrapVue);
 app.use(RouterWeb);
 
 app.mount('#app');
