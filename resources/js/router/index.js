@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 const TableComponent = () => import ('../components/TableComponent.vue');
-const AboutComponent = () => import ('../components/AboutComponent.vue');
 
 const routes=[
     {
@@ -9,11 +8,6 @@ const routes=[
         name:'users',
         component:TableComponent
     },
-    {
-        path:'/about',
-        name:'contacto',
-        component:AboutComponent
-    }
 ];
 
 const router = createRouter({
