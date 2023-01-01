@@ -6,12 +6,11 @@ window.Alpine = Alpine;
 
 Alpine.start();
 
-import { createApp } from 'vue/dist/vue.esm-bundler'
+import { createApp } from 'vue/dist/vue.esm-bundler';
+import RouterWeb from './router/index'
 
 const app = createApp({});
 
-import HomeComponent from "./components/HomeComponent.vue";
+app.use(RouterWeb);
 
-app.component('HomeComponent', HomeComponent);
-
-app.mount("#app")
+app.mount('#app');
