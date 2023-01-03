@@ -33,6 +33,10 @@ Route::get('/users', function () {
     return view('admin/users/index');
 })->middleware(['auth.admin', 'verified'])->name('users.index');
 
+Route::get('/users-data', [UsersController::class, 'allUsers'])->name('users-data');
+
+Route::get('/new-user', [UsersController::class, 'store'])->name('new-user');
+
 Route::get('/users_data', [UsersController::class, 'index'])->name('users.data');
 
 Route::middleware('auth')->group(function () {
