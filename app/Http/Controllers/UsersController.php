@@ -33,4 +33,19 @@ class UsersController extends Controller
             'password' => Hash::make($request->password),
         ]);
     }
+
+    public function update(Request $request, User $idUser)
+    {
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'max:255', 'unique:users,email,'.$idUser->id],
+            'password' => ['min:4', 'max:30'],
+        ]);
+
+        $idUser->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+    }
 }

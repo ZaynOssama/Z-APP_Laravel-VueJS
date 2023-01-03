@@ -35,7 +35,9 @@ Route::get('/users', function () {
 
 Route::get('/users-data', [UsersController::class, 'allUsers'])->name('users-data');
 
-Route::get('/new-user', [UsersController::class, 'store'])->name('new-user');
+Route::post('/new-user', [UsersController::class, 'store'])->name('new-user');
+
+Route::put('/edit-user/{idUser}', [UsersController::class, 'update'])->name('edit-user');
 
 Route::get('/users_data', [UsersController::class, 'index'])->name('users.data');
 

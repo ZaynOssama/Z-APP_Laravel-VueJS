@@ -9,10 +9,9 @@
                 <th>Data Update</th>
                 <th>
                     <div class="ms-3 text-center">
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#createModal" class="me-2 btn btn-outline-primary">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#createModal" class="me-2 btn btn-outline-primary" @click="opendataUser">
                             <i class="fa-solid fa-plus"></i>
                         </button>
-                        <create-user />
                         <button type="button" class="btn btn-warning"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
                     </div>
                 </th>
@@ -30,17 +29,49 @@
                     <td>{{user.updated_at}}</td>
                     <td>
                         <div class="text-center">
-                            <button type="button" class="me-2 btn btn-outline-success"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button type="button" data-bs-toggle="modal" data-bs-target="#createModal" class="me-2 btn btn-outline-success" @click="openEditUser(user)"><i class="fa-solid fa-pen-to-square"></i></button>
                             <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </td>
             </tr>
         </tbody>
     </table>
+    <!-- Modal -->
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <form>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control" id="name" placeholder="Name" required v-model="dataUser.name">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" placeholder="name@example.com" required v-model="dataUser.email">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password" v-model="dataUser.password">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-outline-primary" @click.prevent="createUser" v-if="btnCreate">Create user</button>
+                <button type="submit" class="btn btn-outline-primary" @click.prevent="editUser" v-if="btnEdit">Edit user</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
 </template>
 
 <script>
-import $ from 'jquery'
+import $ from 'jquery/dist/jquery.js'
 import datatable from 'datatables.net-bs5'
 import axios from 'axios';
 
@@ -51,7 +82,11 @@ import axios from 'axios';
         data() {
             return {
                 users: [],
-                newUser: {name: '', email: '', password: ''}
+                dataUser: {name: '', email: '', password: ''},
+                title: '',
+                btnCreate: false,
+                btnEdit: false,
+                idUser: '',
             }
         },
         methods: {
@@ -82,11 +117,29 @@ import axios from 'axios';
                 });
             },
             createUser() {
-                axios.post('new-user', this.newUser).then(res => {
+                axios.post('new-user', this.dataUser).then(res => {
+                    this.dataUser ={name: '', email: '', password: ''}
                     this.getUsers()
-                    $('#createModal').modal('hide')
                 });
-            }
+            },
+            opendataUser() {
+                this.title = 'New User'
+                this.btnCreate = true
+                this.btnEdit = false
+                this.dataUser ={name: '', email: '', password: ''}
+            },
+            openEditUser(user_data) {
+                this.dataUser ={name: user_data.name, email: user_data.email}
+                this.title = 'Edit User'
+                this.btnCreate = false
+                this.btnEdit = true
+                this.idUser = user_data.id
+            },
+            editUser() {
+                axios.put('edit-user/'+this.idUser, this.dataUser).then(res => {
+                    this.getUsers()
+                });
+            },
         }
     }
 </script>
