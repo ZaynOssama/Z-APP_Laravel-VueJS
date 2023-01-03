@@ -8,39 +8,13 @@
                 <th>Data Create</th>
                 <th>Data Update</th>
                 <th>
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#createModal" class="ms-5 me-3 btn btn-outline-primary">
-                        <i class="fa-solid fa-plus"></i>
-                    </button>
-                    <!-- Modal -->
-                    <div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">New User</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="mb-3">
-                                <label for="exampleFormControlInput1" class="form-label">Name</label>
-                                <input type="text" class="form-control" id="Input1" placeholder="name" required v-model="newUser.name">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Email</label>
-                                <input type="email" class="form-control" id="Input2" placeholder="name@example.com" required v-model="newUser.email">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleFormControlTextarea1" class="form-label">Password</label>
-                                <input type="email" class="form-control" id="Input3" placeholder="password" required v-model="newUser.password">
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" class="btn btn-outline-primary" @click.prevent="createUser">Create user</button>
-                        </div>
-                        </div>
+                    <div class="ms-3 text-center">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#createModal" class="me-2 btn btn-outline-primary">
+                            <i class="fa-solid fa-plus"></i>
+                        </button>
+                        <create-user />
+                        <button type="button" class="btn btn-warning"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
                     </div>
-                    </div>
-                    <button type="button" class="btn btn-warning"><i class="fa-solid fa-trash-can-arrow-up"></i></button>
                 </th>
             </tr>
         </thead>
@@ -55,8 +29,10 @@
                     <td>{{user.created_at}}</td>
                     <td>{{user.updated_at}}</td>
                     <td>
-                        <button type="button" class="ms-5 me-3 btn btn-outline-success"><i class="fa-solid fa-pen-to-square"></i></button>
-                        <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                        <div class="text-center">
+                            <button type="button" class="me-2 btn btn-outline-success"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                        </div>
                     </td>
             </tr>
         </tbody>

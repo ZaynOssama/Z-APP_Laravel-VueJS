@@ -10,20 +10,20 @@
       <div class="modal-body">
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Name</label>
-            <input type="text" class="form-control" id="Input1" placeholder="name" required v-model="newUser.name">
+            <input type="text" class="form-control" id="Input1" placeholder="name" required>
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Email</label>
-            <input type="email" class="form-control" id="Input2" placeholder="name@example.com" required v-model="newUser.email">
+            <input type="email" class="form-control" id="Input2" placeholder="name@example.com" required>
         </div>
         <div class="mb-3">
             <label for="exampleFormControlTextarea1" class="form-label">Password</label>
-            <input type="email" class="form-control" id="Input3" placeholder="password" required v-model="newUser.password">
+            <input type="email" class="form-control" id="Input3" placeholder="password" required>
         </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-outline-primary" @click.prevent="createUser">Create user</button>
+        <button type="submit" class="btn btn-outline-primary">Create user</button>
       </div>
     </div>
   </div>
