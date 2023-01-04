@@ -17,8 +17,8 @@ class Task extends Model
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'title',
         'description',
-        'assigned_to',
+        'user_id',
     ];
 }
