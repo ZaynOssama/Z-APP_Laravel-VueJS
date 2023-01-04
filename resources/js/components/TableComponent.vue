@@ -181,12 +181,11 @@ import swal from 'sweetalert';
                     if (willDelete) {
                         axios.delete('delete-user/'+user_data.id).then(res => {
                             this.getUsers()
-                            swal("Deleted!", "The user has been deleted!", "success");
+                            swal("Poof! This user has been deleted!", {
+                            icon: "success",
+                            });
                         }).catch(function (error) {
                             swal("Sorry!", "Something went wrong!", "danger");
-                        });
-                        swal("Poof! This user has been deleted!", {
-                            icon: "success",
                         });
                     } else {
                         swal("The user "+ user_data.name +" is safe!");
