@@ -28,5 +28,9 @@ class DatabaseSeeder extends Seeder
         $user->role = 'admin';
 
         $user->save();
+
+        $this->call([
+            UserSeeder::class
+        ]);
     }
 }

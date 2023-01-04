@@ -142,6 +142,9 @@ import swal from 'sweetalert';
                     this.getUsers()
                     this.modalShow = false
                     swal("Created!", "A new user has been created!", "success");
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
                 }).catch(function (error) {
                     swal("Sorry!", "Something went wrong!", "danger");
                 });
@@ -165,6 +168,9 @@ import swal from 'sweetalert';
                     this.getUsers()
                     this.modalShow = false
                     swal("Edited!", "The user "+ this.dataUser.name +" has been edited!", "success");
+                    setTimeout(function(){
+                        location.reload();
+                    }, 2000);
                 }).catch(function (error) {
                     swal("Sorry!", "Something went wrong!", "danger");
                 });
