@@ -52,4 +52,9 @@ class UsersController extends Controller
             'role' => $request->role,
         ]);
     }
+
+    public function destroy(User $idUser)
+    {
+        $idUser->delete();
+    }
 }

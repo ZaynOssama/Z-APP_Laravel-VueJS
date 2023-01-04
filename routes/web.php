@@ -39,6 +39,8 @@ Route::post('/new-user', [UsersController::class, 'store'])->name('new-user');
 
 Route::put('/edit-user/{idUser}', [UsersController::class, 'update'])->name('edit-user');
 
+Route::delete('/delete-user/{idUser}', [UsersController::class, 'destroy'])->name('delete-user');
+
 Route::get('/users_data', [UsersController::class, 'index'])->name('users.data');
 
 Route::middleware('auth')->group(function () {

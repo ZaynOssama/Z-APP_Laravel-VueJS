@@ -30,7 +30,7 @@
                     <td>
                         <div class="text-center">
                             <button type="button" data-bs-toggle="modal" data-bs-target="#createModal" class="me-2 btn btn-outline-success" @click="openEditUser(user)"><i class="fa-solid fa-pen-to-square"></i></button>
-                            <button type="button" class="btn btn-outline-danger"><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" class="btn btn-outline-danger" @click="openDeleteUser(user)"><i class="fa-solid fa-trash"></i></button>
                         </div>
                     </td>
             </tr>
@@ -139,8 +139,8 @@ import swal from 'sweetalert';
             createUser() {
                 axios.post('new-user', this.dataUser).then(res => {
                     this.dataUser ={name: '', email: '', password: '', role: ''}
-                    this.modalShow = false
                     this.getUsers()
+                    this.modalShow = false
                     swal("Created!", "A new user has been created!", "success");
                 }).catch(function (error) {
                     swal("Sorry!", "Something went wrong!", "danger");
@@ -161,11 +161,36 @@ import swal from 'sweetalert';
             },
             editUser() {
                 axios.put('edit-user/'+this.idUser, this.dataUser).then(res => {
-                    this.modalShow = false
+                    this.idUser = ''
                     this.getUsers()
+                    this.modalShow = false
                     swal("Edited!", "The user "+ this.dataUser.name +" has been edited!", "success");
                 }).catch(function (error) {
                     swal("Sorry!", "Something went wrong!", "danger");
+                });
+            },
+            openDeleteUser(user_data) {
+                swal({
+                        title: "Are you sure?",
+                        text: "Once deleted, you will not be able to recover the user "+ user_data.name +" !",
+                        icon: "warning",
+                        buttons: true,
+                        dangerMode: true,
+                    })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        axios.delete('delete-user/'+user_data.id).then(res => {
+                            this.getUsers()
+                            swal("Deleted!", "The user has been deleted!", "success");
+                        }).catch(function (error) {
+                            swal("Sorry!", "Something went wrong!", "danger");
+                        });
+                        swal("Poof! This user has been deleted!", {
+                            icon: "success",
+                        });
+                    } else {
+                        swal("The user "+ user_data.name +" is safe!");
+                    }
                 });
             },
         }
