@@ -76,8 +76,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-outline-primary" @click="createUser" v-if="btnCreate">Create user</button>
-                <button type="submit" class="btn btn-outline-primary" @click="editUser" v-if="btnEdit">Edit user</button>
+                <button type="submit" class="btn btn-outline-primary" @click.prevent="createUser" v-if="btnCreate">Create user</button>
+                <button type="submit" class="btn btn-outline-primary" @click.prevent="editUser" v-if="btnEdit">Edit user</button>
             </div>
         </form>
     </div>
@@ -89,6 +89,7 @@
 import $ from 'jquery/dist/jquery.js'
 import datatable from 'datatables.net-bs5'
 import axios from 'axios';
+import swal from 'sweetalert';
 
     export default {
         mounted() {
@@ -109,7 +110,9 @@ import axios from 'axios';
         methods: {
             tabla() {
                 this.$nextTick(() => {
-                    $('#example').DataTable();
+                    $('#example').dataTable( {
+                        "order": [[ 0, 'asc' ]]
+                    } );
                 });
             },
             // getUsers() {
@@ -138,6 +141,9 @@ import axios from 'axios';
                     this.dataUser ={name: '', email: '', password: '', role: ''}
                     this.modalShow = false
                     this.getUsers()
+                    swal("Created!", "A new user has been created!", "success");
+                }).catch(function (error) {
+                    swal("Sorry!", "Something went wrong!", "danger");
                 });
             },
             opendataUser() {
@@ -157,7 +163,9 @@ import axios from 'axios';
                 axios.put('edit-user/'+this.idUser, this.dataUser).then(res => {
                     this.modalShow = false
                     this.getUsers()
-
+                    swal("Edited!", "This user "+ this.dataUser.name +" has been edited!", "success");
+                }).catch(function (error) {
+                    swal("Sorry!", "Something went wrong!", "danger");
                 });
             },
         }
