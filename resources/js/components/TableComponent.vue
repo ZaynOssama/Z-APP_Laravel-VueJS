@@ -37,7 +37,7 @@
         </tbody>
     </table>
     <!-- Modal -->
-<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="createModal" tabindex="-1" aria-labelledby="exampleModalLabel" v-if="modalShow" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -54,6 +54,13 @@
                     <label class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" placeholder="name@example.com" required v-model="dataUser.email">
                 </div>
+                <div class="mb-3 btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="admin" v-model="dataUser.role">
+                    <label class="btn btn-outline-primary" for="btnradio1">Admin</label>
+
+                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="customer" v-model="dataUser.role">
+                    <label class="btn btn-outline-primary" for="btnradio2">Customer</label>
+                </div>
                 <div class="mb-3">
                     <label class="form-label">Password</label>
                     <input type="password" class="form-control" id="password" placeholder="Password" v-model="dataUser.password">
@@ -61,8 +68,8 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-outline-primary" @click.prevent="createUser" v-if="btnCreate">Create user</button>
-                <button type="submit" class="btn btn-outline-primary" @click.prevent="editUser" v-if="btnEdit">Edit user</button>
+                <button type="submit" class="btn btn-outline-primary" @click="createUser" v-if="btnCreate">Create user</button>
+                <button type="submit" class="btn btn-outline-primary" @click="editUser" v-if="btnEdit">Edit user</button>
             </div>
         </form>
     </div>
@@ -82,8 +89,10 @@ import axios from 'axios';
         data() {
             return {
                 users: [],
-                dataUser: {name: '', email: '', password: ''},
+                roleUser: 'customer',
+                dataUser: {name: '', email: '', password: '', role: this.roleUser},
                 title: '',
+                modalShow: true,
                 btnCreate: false,
                 btnEdit: false,
                 idUser: '',
@@ -118,7 +127,8 @@ import axios from 'axios';
             },
             createUser() {
                 axios.post('new-user', this.dataUser).then(res => {
-                    this.dataUser ={name: '', email: '', password: ''}
+                    this.dataUser ={name: '', email: '', password: '', role: ''}
+                    this.modalShow = false
                     this.getUsers()
                 });
             },
@@ -126,10 +136,10 @@ import axios from 'axios';
                 this.title = 'New User'
                 this.btnCreate = true
                 this.btnEdit = false
-                this.dataUser ={name: '', email: '', password: ''}
+                this.dataUser ={name: '', email: '', password: '', role: ''}
             },
             openEditUser(user_data) {
-                this.dataUser ={name: user_data.name, email: user_data.email}
+                this.dataUser ={name: user_data.name, email: user_data.email, role: user_data.role}
                 this.title = 'Edit User'
                 this.btnCreate = false
                 this.btnEdit = true
@@ -137,7 +147,9 @@ import axios from 'axios';
             },
             editUser() {
                 axios.put('edit-user/'+this.idUser, this.dataUser).then(res => {
+                    this.modalShow = false
                     this.getUsers()
+
                 });
             },
         }
