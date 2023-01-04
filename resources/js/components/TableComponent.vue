@@ -46,24 +46,32 @@
       </div>
         <form>
             <div class="modal-body">
-                <div class="mb-3">
-                    <label class="form-label">Name</label>
-                    <input type="text" class="form-control" id="name" placeholder="Name" required v-model="dataUser.name">
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="name@example.com" required v-model="dataUser.email">
-                </div>
-                <div class="mb-3 btn-group" role="group" aria-label="Basic radio toggle button group">
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="admin" v-model="dataUser.role">
-                    <label class="btn btn-outline-primary" for="btnradio1">Admin</label>
+                <div class="container">
+                    <div class="row align-items-start">
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label">Name</label>
+                                <input type="text" class="form-control" id="name" placeholder="Name" required v-model="dataUser.name">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="name@example.com" required v-model="dataUser.email">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Password" v-model="dataUser.password">
+                            </div>
+                            <div class="mb-3 btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" value="admin" v-model="dataUser.role">
+                                <label class="btn btn-outline-primary" for="btnradio1">Admin</label>
 
-                    <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="customer" v-model="dataUser.role">
-                    <label class="btn btn-outline-primary" for="btnradio2">Customer</label>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label">Password</label>
-                    <input type="password" class="form-control" id="password" placeholder="Password" v-model="dataUser.password">
+                                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" value="customer" v-model="dataUser.role">
+                                <label class="btn btn-outline-primary" for="btnradio2">Customer</label>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
