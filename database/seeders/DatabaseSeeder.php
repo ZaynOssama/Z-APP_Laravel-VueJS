@@ -30,7 +30,8 @@ class DatabaseSeeder extends Seeder
         $user->save();
 
         $this->call([
-            UserSeeder::class
+            UserSeeder::class,
+            TaskSeeder::class,
         ]);
     }
 }
