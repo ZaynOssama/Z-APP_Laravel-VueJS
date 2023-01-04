@@ -163,7 +163,7 @@ import swal from 'sweetalert';
                 axios.put('edit-user/'+this.idUser, this.dataUser).then(res => {
                     this.modalShow = false
                     this.getUsers()
-                    swal("Edited!", "This user "+ this.dataUser.name +" has been edited!", "success");
+                    swal("Edited!", "The user "+ this.dataUser.name +" has been edited!", "success");
                 }).catch(function (error) {
                     swal("Sorry!", "Something went wrong!", "danger");
                 });
