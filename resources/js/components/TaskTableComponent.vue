@@ -24,7 +24,7 @@
             <tr v-for="task in tasks" :key="task.id">
                     <td>{{task.title}}</td>
                     <td>{{task.description}}</td>
-                    <td>{{task.user_id}}</td>
+                    <td>{{task.name}}</td>
                     <td>{{task.created_at}}</td>
                     <td>{{task.updated_at}}</td>
                     <td>
