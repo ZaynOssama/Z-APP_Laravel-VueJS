@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\TasksController;
+use App\Http\Controllers\CustomerTasksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,12 +20,20 @@ use App\Http\Controllers\TasksController;
 Route::redirect('/', '/login');
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('customer/dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('/zaynsworld', function () {
-    return view('index');
-})->middleware(['auth', 'verified'])->name('zaynsworld');
+Route::get('/my-tasks', function () {
+    return view('customer/tasks/index');
+})->middleware(['auth', 'verified'])->name('my-tasks');
+
+Route::get('/my-tasks-data', [CustomerTasksController::class, 'allTasks'])->name('my-tasks-data');
+
+Route::post('/my-new-task', [CustomerTasksController::class, 'store'])->name('my-new-task');
+
+Route::put('/edit-my-task/{idTask}', [CustomerTasksController::class, 'update'])->name('edit-my-task');
+
+Route::delete('/delete-my-task/{idTask}', [CustomerTasksController::class, 'destroy'])->name('delete-my-task');
 
 Route::get('/admin', function () {
     return view('admin/dashboard');

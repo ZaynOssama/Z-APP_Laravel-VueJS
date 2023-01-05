@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 const UserTableComponent = () => import ('../components/UserTableComponent.vue');
 const TaskTableComponent = () => import ('../components/TaskTableComponent.vue');
+const CustomerTaskTableComponent = () => import ('../components/CustomerTaskTableComponent.vue');
 
 const routes=[
     {
@@ -13,6 +14,11 @@ const routes=[
         path:'/tasks',
         name:'tasks',
         component:TaskTableComponent
+    },
+    {
+        path:'/my-tasks',
+        name:'my-tasks',
+        component:CustomerTaskTableComponent
     },
 ];
 
