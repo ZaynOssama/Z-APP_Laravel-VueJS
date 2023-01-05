@@ -15,7 +15,7 @@
                     <x-nav-link class="text-white" :href="route('admin.index')" :active="request()->routeIs('admin.index')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link class="text-white" :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                    <x-nav-link class="text-white" :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Customers Page') }}
                     </x-nav-link>
                     <x-nav-link class="text-white" :href="route('users.index')" :active="request()->routeIs('users.index')">
