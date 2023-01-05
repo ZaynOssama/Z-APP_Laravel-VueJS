@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\TasksController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,10 @@ Route::get('/users', function () {
     return view('admin/users/index');
 })->middleware(['auth.admin', 'verified'])->name('users.index');
 
+Route::get('/tasks', function () {
+    return view('admin/tasks/index');
+})->middleware(['auth.admin', 'verified'])->name('tasks.index');
+
 Route::get('/users-data', [UsersController::class, 'allUsers'])->name('users-data');
 
 Route::post('/new-user', [UsersController::class, 'store'])->name('new-user');
@@ -41,7 +46,15 @@ Route::put('/edit-user/{idUser}', [UsersController::class, 'update'])->name('edi
 
 Route::delete('/delete-user/{idUser}', [UsersController::class, 'destroy'])->name('delete-user');
 
-Route::get('/users_data', [UsersController::class, 'index'])->name('users.data');
+Route::get('/tasks-data', [TasksController::class, 'allTasks'])->name('tasks-data');
+
+Route::post('/new-task', [TasksController::class, 'store'])->name('new-task');
+
+Route::put('/edit-task/{idTask}', [TasksController::class, 'update'])->name('edit-task');
+
+Route::delete('/delete-task/{idTask}', [TasksController::class, 'destroy'])->name('delete-task');
+
+// Route::get('/users_data', [UsersController::class, 'index'])->name('users.data');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

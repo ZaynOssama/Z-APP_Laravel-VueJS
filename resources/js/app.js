@@ -11,15 +11,11 @@ Alpine.start();
 
 import { createApp } from 'vue/dist/vue.esm-bundler';
 import RouterWeb from './router/index'
-//import BootstrapVue from 'bootstrap-vue'
-import CreateUser from './components/ModalCreate.vue';
-/*import 'bootstrap/dist/css/bootstrap.css'
-import 'bootstrap-vue/dist/bootstrap-vue.css'
-*/
+// import CreateUser from './components/ModalCreate.vue';
 
 const app = createApp({});
 
-app.component('create-user', CreateUser)
+// app.component('create-user', CreateUser)
 
 app.use(RouterWeb);
 

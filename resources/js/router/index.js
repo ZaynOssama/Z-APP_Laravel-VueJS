@@ -1,12 +1,18 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-const TableComponent = () => import ('../components/TableComponent.vue');
+const UserTableComponent = () => import ('../components/UserTableComponent.vue');
+const TaskTableComponent = () => import ('../components/TaskTableComponent.vue');
 
 const routes=[
     {
         path:'/users',
         name:'users',
-        component:TableComponent
+        component:UserTableComponent
+    },
+    {
+        path:'/tasks',
+        name:'tasks',
+        component:TaskTableComponent
     },
 ];
 
