@@ -16,7 +16,7 @@ class TasksController extends Controller
 
     public function allTasks()
     {
-        $data = DB::table('tasks')->join('users', 'users.id', '=', 'tasks.user_id')->select('tasks.id', 'tasks.title', 'tasks.description', 'users.name', 'tasks.created_at', 'tasks.updated_at')->get();
+        $data = DB::table('tasks')->join('users', 'users.id', '=', 'tasks.user_id')->select('tasks.id', 'tasks.title', 'tasks.description', 'users.name', 'tasks.user_id', 'tasks.created_at', 'tasks.updated_at')->get();
         return $data;
     }
 
