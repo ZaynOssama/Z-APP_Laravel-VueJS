@@ -63,7 +63,7 @@
                                 <label class="form-label">Assigned To</label>
                                 <select v-model="dataTask.user_id">
                                 <option disabled value="">Please select one</option>
-                                    <option v-for="user in users" :key="user.id">{{user.id}}</option>
+                                    <option v-for="user in users" :key="user.id" :value="user.id">{{user.name}}</option>
                                 </select>
                             </div>
                         </div>
